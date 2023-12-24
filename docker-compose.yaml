@@ -1,25 +1,37 @@
 version: '3'
 services:
-  app:
+  frontend:
     image: node:latest # Gunakan versi Node.js yang diinginkan
     container_name: frontend
-    working_dir: /client
+    working_dir: /frontend
+    depends_on:
+      - database
     volumes:
-      - ./client:/client
+      - ./frontend:/frontend
     ports:
-      - "3000:3000"
+      - 3000:3000
     command: npm start
+    networks:
+      - pacmail
 
   database:
-   image: postgres:13
-   container_name: database
-   hostname: database
-   restart: always
-   environment:
-    - POSTGRES_USER=postgres
-    - POSTGRES_PASSWORD=qwerty123
-    - POSTGRES_DB=pacmail
-   ports:
-    - "5432:5432"
-   volumes:
-    - postgres_data:/var/lib/postgresql/data
+    image: postgres:13
+    container_name: database
+    hostname: database
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=qwerty123
+      - POSTGRES_DB=pacmail
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - pacmail
+
+volumes:
+  postgres_data:
+
+networks:
+  pacmail:

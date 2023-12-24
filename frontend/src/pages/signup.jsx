@@ -14,7 +14,8 @@ const SignUpForm = () => {
       console.log('Login with:', email, password);
     } else {
       // Lakukan logika signup di sini
-      console.log('Sign Up:', fullName, email, password);
+      // console.log('Sign Up:', fullName, email, password);
+      
     }
   };
 
