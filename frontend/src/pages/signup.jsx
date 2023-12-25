@@ -5,15 +5,14 @@ const SignUpForm = () => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLogin, setIsLogin] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+  const [isLogin, setIsLogin] = useState(true); // Default to login mode
   const [error, setError] = useState('');
-
+  const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
@@ -23,11 +22,31 @@ const SignUpForm = () => {
       return;
     }
 
-    // Continue with login/signup logic
-    if (isLogin) {
-      console.log('Login with:', email, password);
-    } else {
-      console.log('Sign Up:', fullName, email, password);
+    try {
+      const response = await fetch(`http://localhost:5000/${isLogin ? 'login' : 'signup'}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName,
+          email,
+          password,
+        }),
+      });
+
+      // Handle the response from the backend
+      const data = await response.json();
+      if (response.ok) {
+        console.log(`${isLogin ? 'Login' : 'Sign Up'} successful`);
+        // Redirect or perform actions for successful login/signup
+      } else {
+        console.error(`${isLogin ? 'Login' : 'Sign Up'} failed:`, data.error);
+        setError(data.error || 'Something went wrong');
+      }
+    } catch (error) {
+      console.error(`Error ${isLogin ? 'logging in' : 'signing up'}:`, error);
+      setError(`Error ${isLogin ? 'logging in' : 'signing up'}`);
     }
 
     // Clear form after submission
@@ -36,12 +55,9 @@ const SignUpForm = () => {
     setPassword('');
   };
 
-  // Prefix pada judul halaman
-  const pageTitlePrefix = isLogin ? 'Login' : 'Sign Up';
-
   return (
     <div className="signup-container">
-      <h2 style={{ color: '#fff' }}>{pageTitlePrefix} - PacMail</h2>
+      <h2 style={{ color: '#fff' }}>{isLogin ? 'Login' : 'Sign Up'} - PacMail</h2>
       <form className="signup-form" onSubmit={handleFormSubmit} method="post">
         {!isLogin && (
           <div className="form-group">
@@ -49,6 +65,7 @@ const SignUpForm = () => {
             <input
               type="text"
               id="fullName"
+              name="fullName"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
             />
@@ -59,6 +76,7 @@ const SignUpForm = () => {
           <input
             type="email"
             id="email"
+            name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -69,6 +87,7 @@ const SignUpForm = () => {
             <input
               type={showPassword ? 'text' : 'password'}
               id="password"
+              name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
