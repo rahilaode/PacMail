@@ -1,65 +1,62 @@
 /* Navbar.css */
 .navbar {
-    background-color: #2ecc71;
-    color: #fff;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .navbar-left {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo-container {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #fff;
-  }
-  
-  .logo {
-    width: 30px; /* Sesuaikan ukuran logo sesuai kebutuhan */
-    margin-right: 10px;
-  }
-  
-  .brand {
-    font-size: 1.5em;
-    font-weight: bold;
-  }
-  
-  .navbar-right {
-    display: flex;
-    align-items: center;
-  }
-  
-  .navbar-right button {
-    margin-left: 10px;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    color: #fff;
-  }
-  
-  .navbar-right button:hover {
-    text-decoration: underline;
-  }
-  
+  background-color: hsl(211, 100%, 32%) !important;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 0; /* Hapus padding pada kanan */
+  padding-left: 0; /* Hapus padding pada kiri */
+  background: url('../../assets/bg-fix.jpg') center/cover no-repeat;
+}
 
-  /* Navbar.css */
 .logo {
-    width: 30px; /* Sesuaikan ukuran logo sesuai kebutuhan */
-    margin-right: 10px;
-  }
-  
-  .brand {
-    font-size: 1.5em;
-    font-weight: bold;
-  }
-  
-  .navbar {
-    background-color: #007bff !important; /* Ganti dengan warna biru yang diinginkan */
-  }
-  
+  width: 30px;
+  margin-left: 40px; 
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 0 px solid #fff;
+}
+
+.brand {
+  font-size: 1.5em;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.inboxbtn{
+  background-color: darkcyan;
+  border: 0px solid #ffffff;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: medium;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-inline: 1cm;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.sendbtn{
+  background-color:hsl(211, 100%, 32%);
+  border: 0px solid #ffffff;
+  padding-left: 20px; 
+  padding-right: 20px;
+  font-size: medium;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-inline: 1cm;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.logoutbtn{
+  background-color:indianred;
+  border: 0px solid #ffffff;
+  padding-left: 30px; 
+  padding-right: 30px;
+  color: #fff;
+  font-size: medium;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 10px;
+  margin-right: 10px;
+}
