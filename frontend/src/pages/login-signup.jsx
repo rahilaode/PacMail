@@ -1,13 +1,17 @@
+// login-signup.jsx
 import React, { useState } from 'react';
-import '../SignUpForm.css'; // Import file CSS terpisah
+import '../SignUpForm.css';
+import { useNavigate } from 'react-router-dom';
 
-const SignUpForm = () => {
+const LoginSignup = () => {
+  const navigate = useNavigate();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLogin, setIsLogin] = useState(true); // Default to login mode
+  const [isLogin, setIsLogin] = useState(true);
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
@@ -16,7 +20,6 @@ const SignUpForm = () => {
     e.preventDefault();
     setError('');
 
-    // Perform validation
     if (!email || !password) {
       setError('Please enter both email and password.');
       return;
@@ -35,11 +38,11 @@ const SignUpForm = () => {
         }),
       });
 
-      // Handle the response from the backend
       const data = await response.json();
       if (response.ok) {
         console.log(`${isLogin ? 'Login' : 'Sign Up'} successful`);
-        // Redirect or perform actions for successful login/signup
+        localStorage.setItem('token', data.token); // Simpan token ke localStorage
+        navigate('/mail');
       } else {
         console.error(`${isLogin ? 'Login' : 'Sign Up'} failed:`, data.error);
         setError(data.error || 'Something went wrong');
@@ -49,7 +52,6 @@ const SignUpForm = () => {
       setError(`Error ${isLogin ? 'logging in' : 'signing up'}`);
     }
 
-    // Clear form after submission
     setFullName('');
     setEmail('');
     setPassword('');
@@ -112,4 +114,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default LoginSignup;
