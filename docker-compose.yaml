@@ -4,15 +4,27 @@ services:
     image: node:latest # Gunakan versi Node.js yang diinginkan
     container_name: frontend
     working_dir: /frontend
+    restart: always
+    depends_on:
+      - database
+      - backend
+    volumes:
+      - ./frontend:/frontend
+    command: npm start
+    network_mode: host
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    hostname: backend
+    restart: always
     depends_on:
       - database
     volumes:
-      - ./frontend:/frontend
-    ports:
-      - 3000:3000
-    command: npm start
-    networks:
-      - pacmail
+      - ./backend:/backend
+    network_mode: host
 
   database:
     image: postgres:13
@@ -23,13 +35,10 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=qwerty123
       - POSTGRES_DB=pacmail
-    ports:
-      - 5432:5432
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    networks:
-      - pacmail
-
+    network_mode: host
+    
 volumes:
   postgres_data:
 
