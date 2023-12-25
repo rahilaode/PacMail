@@ -2,8 +2,7 @@
 
 import React, { useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/navbar';
-import Sidebar from '../components/sidebar';
+import Inbox from '../components/inbox';
 
 const Mail = () => {
   const navigate = useNavigate();
@@ -35,14 +34,7 @@ const Mail = () => {
 
   return (
     <>
-      <div className="container">
-        <Navbar />
-        <main>
-          <h2>Mail Page</h2>
-          {/* Isi konten halaman mail di sini */}
-        </main>
-        <Sidebar />
-      </div>
+      <Inbox />
     </>
   );
 };
