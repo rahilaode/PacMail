@@ -59,7 +59,7 @@ const LoginSignup = () => {
 
   return (
     <div className="signup-container">
-      <h2 style={{ color: '#fff' }}>{isLogin ? 'Login' : 'Sign Up'} - PacMail</h2>
+      <h2 style={{color: '#fff', fontSize: '30px', marginBottom: '60px' }}>{isLogin ? 'Login' : 'Sign Up'} - PacMail</h2>
       <form className="signup-form" onSubmit={handleFormSubmit} method="post">
         {!isLogin && (
           <div className="form-group">
