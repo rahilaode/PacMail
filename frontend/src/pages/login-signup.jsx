@@ -1,4 +1,3 @@
-// login-signup.jsx
 import React, { useState } from 'react';
 import '../SignUpForm.css';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +10,7 @@ const LoginSignup = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
@@ -26,10 +26,11 @@ const LoginSignup = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/${isLogin ? 'login' : 'signup'}`, {
+      const response = await fetch(`${apiUrl}/${isLogin ? 'login' : 'signup'}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'User-Email': email
         },
         body: JSON.stringify({
           fullName,
@@ -41,7 +42,8 @@ const LoginSignup = () => {
       const data = await response.json();
       if (response.ok) {
         console.log(`${isLogin ? 'Login' : 'Sign Up'} successful`);
-        localStorage.setItem('token', data.token); // Simpan token ke localStorage
+        localStorage.setItem('token', data.token); // Simpan token ke 
+        localStorage.setItem('userEmail', email); // Simpan email penerima ke localStorage
         navigate('/mail');
       } else {
         console.error(`${isLogin ? 'Login' : 'Sign Up'} failed:`, data.error);

@@ -42,7 +42,7 @@ input {
 
 .eye-icon {
   position: absolute;
-  top: 74%;
+  top: 70%;
   right: 10px;
   transform: translateY(-50%);
   cursor: pointer;
@@ -80,4 +80,8 @@ input {
 
 .toggle-link span {
   text-decoration: underline;
+}
+
+.error-message{
+  color: hwb(5 0% 0%);
 }
