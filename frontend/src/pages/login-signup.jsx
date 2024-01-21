@@ -42,8 +42,8 @@ const LoginSignup = () => {
       const data = await response.json();
       if (response.ok) {
         console.log(`${isLogin ? 'Login' : 'Sign Up'} successful`);
-        localStorage.setItem('token', data.token); // Simpan token ke 
-        localStorage.setItem('userEmail', email); // Simpan email penerima ke localStorage
+        localStorage.setItem('token', data.token); 
+        localStorage.setItem('userEmail', email); 
         navigate('/mail');
       } else {
         console.error(`${isLogin ? 'Login' : 'Sign Up'} failed:`, data.error);

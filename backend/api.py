@@ -34,15 +34,6 @@ class Email(db.Model):
     recepient_email = db.Column(db.String(255))
     recepient_email_subject = db.Column(db.String(255))
     recepient_email_body = db.Column(db.String(255))
-    
-class Email_Reply(db.Model):
-    reply_id = db.Column(db.Integer, primary_key=True)
-    reply_at = db.Column(db.DateTime, default=func.now())
-    reply_email_id = db.Column(db.Integer)
-    reply_sender_email = db.Column(db.String(255))
-    reply_recepient_email = db.Column(db.String(255))
-    reply_recepient_email_subject = db.Column(db.String(255))
-    reply_recepient_email_body = db.Column(db.String(255))
 
 @app.route('/signup', methods=['POST'])
 def signup():
