@@ -28,4 +28,4 @@ jobs:
             - name: Testing
               run: |
                 sleep 10
-                pytest testing/test.py
+                pytest testing/test_signup.py
