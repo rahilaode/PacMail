@@ -44,7 +44,6 @@ class TestTestting():
     self.driver.find_element(By.ID, "password").click()
     self.driver.find_element(By.ID, "password").send_keys("1111")
     self.driver.find_element(By.XPATH, "//button[@type=\'submit\']").click()
-    self.driver.find_element(By.XPATH, "(//button[@type=\'button\'])[3]").click()
     
 # Jalankan pengujian jika file ini dieksekusi secara langsung
 if __name__ == "__main__":
