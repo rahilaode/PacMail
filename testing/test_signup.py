@@ -35,7 +35,6 @@ class TestTestting():
   
   def test_testting(self):
     self.driver.get("http://localhost:3000/")
-    self.driver.set_window_size(1060, 820)
     self.driver.find_element(By.CSS_SELECTOR, "span").click()
     self.driver.find_element(By.ID, "fullName").click()
     self.driver.find_element(By.ID, "fullName").send_keys("Budi")
